@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel Admin</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Panel de Administración</h2>
+
+    <a href="/logout" class="admin-btn" style="background:red;">Cerrar sesión</a>
+
+    <h3>Registrar supermercado</h3>
+
+    <!-- AHORA APUNTA A /admin COMO DEBE SER -->
+    <form method="POST" action="/admin">
+        <input name="nombre" placeholder="Nombre del supermercado">
+        <input name="direccion" placeholder="Dirección">
+        <input name="horario" placeholder="Horario">
+        <input name="telefono" placeholder="Teléfono">
+        <input name="imagen" placeholder="Nombre del archivo de imagen">
+        <button class="btn">Agregar supermercado</button>
+    </form>
+
+    <h3>Supermercados registrados</h3>
+    <ul>
+        {% for s in supermercados %}
+            <li>{{ s['nombre'] }} - {{ s['direccion'] }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>

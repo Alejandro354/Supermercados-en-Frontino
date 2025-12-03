@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supermercados en Frontino</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<!-- BOTÓN ADMIN SOLO SI NO ESTÁ LOGUEADO -->
+{% if admin %}
+    <a href="/admin" class="admin-access">Panel Admin</a>
+{% else %}
+    <a href="/login" class="admin-access">Admin</a>
+{% endif %}
+
+<div class="container">
+    <h1>Supermercados en Frontino</h1>
+
+    <form>
+        <input name="q" value="{{ query }}" placeholder="Buscar supermercado...">
+    </form>
+
+    <div class="lista">
+        {% for s in supermercados %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/' + s['imagen']) }}">
+            <div class="info">
+                <h2>{{ s['nombre'] }}</h2>
+                <p><b>Dirección:</b> {{ s['direccion'] }}</p>
+
+                {% if s['horario'] %}
+                <p><b>Horario:</b> {{ s['horario'] }}</p>
+                {% endif %}
+
+                {% if s['telefono'] %}
+                <p><b>Teléfono:</b> {{ s['telefono'] }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
